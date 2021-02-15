@@ -74,12 +74,12 @@
 }
 
 .celsius {
+	text-align: center;
+	display: inline;
 	font-size: 25px;
 	position: absolute;
-
 	top: 0px;
-
-	left: 205px;
+	right: 250px;
 	color: rgb(
 		232,
 		112,
