@@ -1,5 +1,5 @@
 /** @format */
-//week 4
+//week 4 ex.1
 function formatDate(
 	date
 ) {
@@ -10,6 +10,7 @@ function formatDate(
 	) {
 		hours = `0${hours}`;
 	}
+
 	let minutes = date.getMinutes();
 	if (
 		minutes <
@@ -17,80 +18,35 @@ function formatDate(
 	) {
 		minutes = `0${minutes}`;
 	}
-
 	let dayIndex = date.getDay();
 	let days = [
-		"Sunday",
-		"Monday",
-		"Tuesday",
-		"Wednesday",
-		"Thursday",
-		"Friday",
-		"Saturday",
+		"Sun",
+		"Mon",
+		"Tue",
+		"Wed",
+		"Thur",
+		"Fri",
+		"Sat",
 	];
+
 	let day =
 		days[
 			dayIndex
 		];
 
-	return `${hours}:${minutes}`;
+	return `${days[dayIndex]} ${hours}:${minutes}`;
 }
 
-//https://stackoverflow.com/questions/563406/add-days-to-javascript-date
-function addDays(
-	date,
-	days
-) {
-	var result = new Date(
-		date
-	);
-	result.setDate(
-		result.getDate() +
-			days
-	);
-	return result;
-}
+let dateElement = document.querySelector(
+	"#date"
+);
+let currentTime = new Date();
 
-console.log(
-	formatDate(
-		new Date()
-	)
+dateElement.innerHTML = formatDate(
+	currentTime
 );
 
-let t0 = new Date();
-document.getElementById(
-	"time"
-).innerHTML = formatDate(
-	t0
-);
-
-document.getElementById(
-	"day-0"
-).innerHTML =
-	"Today";
-
-var i;
-for (
-	i = 1;
-	i <
-	6;
-	i++
-) {
-	document.getElementById(
-		`day-${i}`
-	).innerHTML =
-		days[
-			addDays(
-				t0,
-				i
-			).getDay()
-		];
-}
-// document.getElementById('day-1').innerHTML = days[addDays(t0, 1).getDay()]
-// document.getElementById('day-2').innerHTML = days[addDays(t0, 2).getDay()]
-// document.getElementById('day-3').innerHTML = days[addDays(t0, 3).getDay()]
-// document.getElementById('day-4').innerHTML = days[addDays(t0, 4).getDay()]
-// document.getElementById('day-5').innerHTML = days[addDays(t0, 5).getDay()]
+//week 4 ex. 2
 
 //week5
 

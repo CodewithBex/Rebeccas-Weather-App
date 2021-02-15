@@ -1,6 +1,6 @@
 /** @format */
 
-.main {
+.weather-app {
 	padding: 15px
 		0;
 	margin: 100px
@@ -60,7 +60,7 @@
 	);
 	text-align: center;
 	display: block;
-	font-size: 20px;
+	font-size: 18px;
 }
 .currentTempurature {
 	text-align: center;
@@ -70,7 +70,7 @@
 		112,
 		77
 	);
-	font-size: 45px;
+	font-size: 40px;
 }
 
 .daysOfTheWeek {
