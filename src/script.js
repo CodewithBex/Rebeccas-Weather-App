@@ -1,73 +1,39 @@
 /** @format */
 //week 4
-function showTime(
-	event
-) {
-	event.preventDefault();
-	let searchInput = document.querySelector(
-		"#search-text-input"
-	);
-
-	let h4 = document.querySelector(
-		"h4"
-	);
-	h4.innerHTML = `${searchInput.value}`;
-}
-//let form = document.querySelector(
-//	"#search-form"
-//);
-
-//form.addEventListener(
-//	"submit"
-//);
-
-let days = [
-	"Sunday",
-	"Monday",
-	"Tuesday",
-	"Wednesday",
-	"Thursday",
-	"Friday",
-	"Saturday",
-];
-let months = [
-	"January",
-	"February",
-	"March",
-	"April",
-	"May",
-	"June",
-	"July",
-	"August",
-	"September",
-	"October",
-	"November",
-	"December",
-];
-
 function formatDate(
 	date
 ) {
-	let currentDay =
-		days[
-			date.getDay()
-		];
-	//let hours = date.getHours();
-	// if (hours < 10) {
-	// hours = `0${hours}`;
-	// }
-	// let minutes = date.getMinutes();
-	// if (minutes < 10) {
-	// minutes = `0${minutes}`;
-	//}
-	// let currentMonth = months[date.getMonth()];
-	// let currentDate = date.getDate();
-	let currentHour = date.getHours();
-	let currentMinutes = date.getMinutes();
 	let hours = date.getHours();
+	if (
+		hours <
+		10
+	) {
+		hours = `0${hours}`;
+	}
+	let minutes = date.getMinutes();
+	if (
+		minutes <
+		10
+	) {
+		minutes = `0${minutes}`;
+	}
 
-	let formattedDate = ` ${currentHour}:${currentMinutes}`;
-	return formattedDate;
+	let dayIndex = date.getDay();
+	let days = [
+		"Sunday",
+		"Monday",
+		"Tuesday",
+		"Wednesday",
+		"Thursday",
+		"Friday",
+		"Saturday",
+	];
+	let day =
+		days[
+			dayIndex
+		];
+
+	return `${hours}:${minutes}`;
 }
 
 //https://stackoverflow.com/questions/563406/add-days-to-javascript-date
