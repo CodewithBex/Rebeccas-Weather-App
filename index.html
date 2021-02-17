@@ -13,6 +13,7 @@
 </head>
 
 <body>
+    <!-- search engine, button, local place and time -->
     <div class="container">
         <div class="weather-app">
             <div class="row mb-2">
@@ -29,27 +30,65 @@
                     </form>
                 </div>
             </div>
+
+
+
+            <!-- City Information -->
             <div class="row">
                 <div class="col text-center">
-                    <div class="currentCity" id="city">
-                        <h4>
-                            Vancouver
+                    <div class="currentCity">
+                        <h4> <span id="city"></span>
                         </h4>
                     </div>
                 </div>
             </div>
-            <div>
-                <div class="currentTime" id="date">
-                    Tue Jan 19, 10:36, 2021
-                </div>
-            </div>
+
+
+            <!-- Weather description-->
             <div class="row">
                 <div class="col text-center">
-                    <div class="currentTempurature" id="temperature">19°C</div>
+                    <div class="weatherDescription">
+                        <p> <span id="description"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
 
+
+            <!-- Time information -->
+            <div>
+                <div class="currentTime">
+                    <span id="date"></span>
+                </div>
+            </div>
+
+
+            <!-- Today's Temperature and units -->
+            <div class="row">
+                <div class="col text-center">
+                    <div class="currentTempurature"><span id="temperature"></span><span class="units"><a href="#"
+                                id="celsius-link" class="active">°C</a>|<a href="#" id="fahrenheit-link">°F</a></span>
+                    </div>
+
+
+
+                    <!-- Today's weather detail -->
+                    <div class="row weather-details">
+                        <div class="col-sm">Wind: <span id="wind"></span>
+                            km/h
+                        </div>
+
+                        <div class="col-sm"> Humidity: <span id="humidity"></span>
+                            %
+                        </div>
+
+                    </div>
+
+
+                    <!--Forcast details -->
                     <div class="row daysOfTheWeek text-center">
                         <div class="col">
-                            <span class="forcastDay" id="day-0">○Today </span>
+                            <span class="forcastDay" id="day-0">Today </span>
                         </div>
                         <div class="col">
                             <span class="forcastTempurature"> 14°C </span>

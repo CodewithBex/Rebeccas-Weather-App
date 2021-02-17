@@ -1,8 +1,11 @@
 /** @format */
-//week 4 ex.1
+//Date and Time
 function formatDate(
-	date
+	timestamp
 ) {
+	let date = new Date(
+		timestamp
+	);
 	let hours = date.getHours();
 	if (
 		hours <
@@ -10,7 +13,6 @@ function formatDate(
 	) {
 		hours = `0${hours}`;
 	}
-
 	let minutes = date.getMinutes();
 	if (
 		minutes <
@@ -18,75 +20,98 @@ function formatDate(
 	) {
 		minutes = `0${minutes}`;
 	}
-	let dayIndex = date.getDay();
 	let days = [
 		"Sun",
 		"Mon",
 		"Tue",
 		"Wed",
-		"Thur",
+		"Thu",
 		"Fri",
 		"Sat",
 	];
-
 	let day =
 		days[
-			dayIndex
+			date.getDay()
 		];
 
-	return `${days[dayIndex]} ${hours}:${minutes}`;
+	return `${day} ${hours}:${minutes}`;
 }
-
-let dateElement = document.querySelector(
-	"#date"
-);
-let currentTime = new Date();
-
-dateElement.innerHTML = formatDate(
-	currentTime
-);
-
-//week 4 ex. 2
-
-//week5
+//Todays weather
 
 function showTemperature(
 	response
 ) {
-	let h4 = document.querySelector(
-		"h4"
+	let cityeElement = document.querySelector(
+		"#city"
 	);
-	h4.innerHTML = `${response.data.name}`;
+	let temperatureElement = document.querySelector(
+		"#temperature"
+	);
 
-	let temperature = Math.round(
+	let descriptionElement = document.querySelector(
+		"#description"
+	);
+
+	let humidityElement = document.querySelector(
+		"#humidity"
+	);
+
+	let windElement = document.querySelector(
+		"#wind"
+	);
+
+	let dateElement = document.querySelector(
+		"#date"
+	);
+
+	cityeElement.innerHTML =
+		response.data.name;
+
+	temperatureElement.innerHTML = Math.round(
 		response
 			.data
 			.main
 			.temp
 	);
-	let currentTemperature = document.querySelector(
-		"#temperature"
+
+	descriptionElement.innerHTML =
+		response.data.weather[0].description;
+
+	humidityElement.innerHTML =
+		response.data.main.humidity;
+
+	windElement.innerHTML = Math.round(
+		response
+			.data
+			.wind
+			.speed
 	);
-	currentTemperature.innerHTML = `${temperature}°C`;
-}
-function showCity(
-	city
-) {
-	let unit =
-		"metric";
-	let apiKey =
-		"f7d4da118c7f49c6b1df6502b95c501b";
-	let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
 
-	axios
-		.get(
-			apiUrl
-		)
-		.then(
-			showTemperature
-		);
+	dateElement.innerHTML = formatDate(
+		response
+			.data
+			.dt *
+			1000
+	);
 }
 
+let unit =
+	"metric";
+let city =
+	"London";
+let apiKey =
+	"f7d4da118c7f49c6b1df6502b95c501b";
+let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+axios
+	.get(
+		apiUrl
+	)
+	.then(
+		showTemperature
+	);
+
+// current city
 function searchCity(
 	event
 ) {
@@ -106,7 +131,7 @@ form.addEventListener(
 	searchCity
 );
 
-//bonus
+//current location button
 
 function currentPosition(
 	position

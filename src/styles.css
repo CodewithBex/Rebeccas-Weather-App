@@ -1,12 +1,11 @@
 /** @format */
 
 .weather-app {
-	padding: 15px
-		0;
-	margin: 100px
+	padding: 6px;
+	margin: 40px
 		auto;
-	max-width: 50%;
-	min-width: 350px;
+	max-width: 35%;
+	min-width: 450px;
 	background-color: white;
 	border-radius: 1%;
 	border: 0.5px
@@ -19,7 +18,7 @@
 	font-family: Arial
 			Narrow,
 		sans-serif;
-	background-image: url(https://i.pinimg.com/564x/99/8b/94/998b94b47348dda37d084f585a2a70df.jpg);
+	background-image: url(https://i.pinimg.com/600x/99/8b/94/998b94b47348dda37d084f585a2a70df.jpg);
 }
 
 .searchCity {
@@ -52,15 +51,24 @@
 	font-size: 20px;
 }
 
-.currentTime {
-	color: rgb(
-		229,
-		153,
-		166
-	);
+.weatherDescription {
+	color: #e1a630;
 	text-align: center;
 	display: block;
 	font-size: 18px;
+	font-style: italic;
+	text-transform: capitalize;
+}
+.currentTime {
+	color: rgb(
+		197,
+		150,
+		158
+	);
+	text-align: center;
+	display: block;
+	font-size: 19px;
+	margin-bottom: 5px;
 }
 .currentTempurature {
 	text-align: center;
@@ -70,12 +78,39 @@
 		112,
 		77
 	);
-	font-size: 40px;
+	font-size: 45px;
+	margin-bottom: 5px;
+}
+
+.units {
+	color: rgb(
+		232,
+		112,
+		77
+	);
+	font-size: 14px;
+	position: absolute;
+}
+
+.weather-details {
+	text-align: center;
+	border-radius: 5px;
+	padding: 1px
+		0px;
+	margin: 20px
+		0;
+	background-color: rgba(
+		255,
+		255,
+		255,
+		0.1
+	);
+	color: #ad7f5a;
+	font-size: 15px;
+	margin-top: -15px;
 }
 
 .daysOfTheWeek {
-	margin: 0
-		auto;
 	color: #ac4b1c;
 	font-size: 16px;
 	font-weight: 600;
