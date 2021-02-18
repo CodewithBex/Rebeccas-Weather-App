@@ -1,4 +1,5 @@
 /** @format */
+
 //Date and Time
 function formatDate(
 	timestamp
@@ -41,6 +42,9 @@ function formatDate(
 function showTemperature(
 	response
 ) {
+	console.log(
+		response.data
+	);
 	let cityeElement = document.querySelector(
 		"#city"
 	);
@@ -94,41 +98,50 @@ function showTemperature(
 			1000
 	);
 }
+//search engine
 
-let unit =
-	"metric";
-let city =
-	"London";
-let apiKey =
-	"f7d4da118c7f49c6b1df6502b95c501b";
-let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function search(
+	city
+) {
+	let unit =
+		"metric";
+	let apiKey =
+		"f7d4da118c7f49c6b1df6502b95c501b";
+	let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 
-axios
-	.get(
-		apiUrl
-	)
-	.then(
-		showTemperature
-	);
+	axios
+		.get(
+			apiUrl
+		)
+		.then(
+			showTemperature
+		);
+}
 
-// current city
-function searchCity(
+function handleSubmit(
 	event
 ) {
 	event.preventDefault();
-	let searchInput = document.querySelector(
-		"#search-text-input"
+	let cityInputElement = document.querySelector(
+		"#city-input"
 	);
-	showCity(
-		searchInput.value
+	search(
+		cityInputElement.value
 	);
 }
+
+search(
+	"London"
+);
+
+//search engine button
+
 let form = document.querySelector(
 	"#search-form"
 );
 form.addEventListener(
 	"submit",
-	searchCity
+	handleSubmit
 );
 
 //current location button
