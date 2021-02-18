@@ -92,6 +92,24 @@
 	position: absolute;
 }
 
+.active {
+	color: rgb(
+		232,
+		112,
+		77
+	);
+	cursor: default;
+}
+
+.active:hover {
+	text-decoration: none;
+	color: rgb(
+		232,
+		112,
+		77
+	);
+}
+
 .weather-details {
 	text-align: center;
 	border-radius: 5px;

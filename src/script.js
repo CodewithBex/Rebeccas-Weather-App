@@ -1,6 +1,7 @@
 /** @format */
 
 //Date and Time
+
 function formatDate(
 	timestamp
 ) {
@@ -68,6 +69,12 @@ function showTemperature(
 		"#date"
 	);
 
+	celciusTemperature =
+		response
+			.data
+			.main
+			.temp;
+
 	cityeElement.innerHTML =
 		response.data.name;
 
@@ -130,11 +137,52 @@ function handleSubmit(
 	);
 }
 
-search(
-	"London"
-);
+// Unit Conversion
+function showFahrenheitTemperature(
+	event
+) {
+	event.preventDefault();
+	let temperatureElement = document.querySelector(
+		"#temperature"
+	);
+	celciusLink.classList.remove(
+		"active"
+	);
+	fahrenheitLink.classList.add(
+		"active"
+	);
+	let FahrenheitTemperature =
+		(celciusTemperature *
+			9) /
+			5 +
+		32;
 
-//search engine button
+	temperatureElement.innerHTML = Math.round(
+		FahrenheitTemperature
+	);
+}
+
+function showcelciusTemperature(
+	event
+) {
+	event.preventDefault();
+	celciusLink.classList.add(
+		"active"
+	);
+	fahrenheitLink.classList.remove(
+		"active"
+	);
+	let temperatureElement = document.querySelector(
+		"#temperature"
+	);
+	temperatureElement.innerHTML = Math.round(
+		celciusTemperature
+	);
+}
+
+// clicks and sumbit
+
+let celciusTemperature = null;
 
 let form = document.querySelector(
 	"#search-form"
@@ -142,6 +190,27 @@ let form = document.querySelector(
 form.addEventListener(
 	"submit",
 	handleSubmit
+);
+
+let fahrenheitLink = document.querySelector(
+	"#fahrenheit-link"
+);
+
+fahrenheitLink.addEventListener(
+	"click",
+	showFahrenheitTemperature
+);
+
+let celciusLink = document.querySelector(
+	"#celcius-link"
+);
+
+celciusLink.addEventListener(
+	"click",
+	showcelciusTemperature
+);
+search(
+	"London"
 );
 
 //current location button
