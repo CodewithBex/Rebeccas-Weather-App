@@ -2,108 +2,53 @@
 
 //Date and Time
 
-function formatDate(
-	timestamp
-) {
-	let date = new Date(
-		timestamp
-	);
+function formatDate(timestamp) {
+	let date = new Date(timestamp);
 	let hours = date.getHours();
-	if (
-		hours <
-		10
-	) {
+
+	if (hours < 10) {
 		hours = `0${hours}`;
 	}
+
 	let minutes = date.getMinutes();
-	if (
-		minutes <
-		10
-	) {
+
+	if (minutes < 10) {
 		minutes = `0${minutes}`;
 	}
-	let days = [
-		"Sun",
-		"Mon",
-		"Tue",
-		"Wed",
-		"Thu",
-		"Fri",
-		"Sat",
-	];
-	let day =
-		days[
-			date.getDay()
-		];
+
+	let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+	let day = days[date.getDay()];
 
 	return `${day} ${hours}:${minutes}`;
 }
+
 //Todays weather
 
 function showTemperature(
 	response
 ) {
-	console.log(
-		response.data
-	);
-	let cityeElement = document.querySelector(
-		"#city"
-	);
-	let temperatureElement = document.querySelector(
-		"#temperature"
-	);
+	console.log(response.data);
+	let cityeElement = document.querySelector("#city");
+	let temperatureElement = document.querySelector("#temperature");
+	let descriptionElement = document.querySelector("#description");
+	let humidityElement = document.querySelector("#humidity");
+	let windElement = document.querySelector("#wind");
+	let dateElement = document.querySelector("#date");
 
-	let descriptionElement = document.querySelector(
-		"#description"
-	);
+	celciusTemperature = response.data.main.temp;
 
-	let humidityElement = document.querySelector(
-		"#humidity"
-	);
+	cityeElement.innerHTML = response.data.name;
 
-	let windElement = document.querySelector(
-		"#wind"
-	);
+	temperatureElement.innerHTML = Math.round(response.data.main.temp);
 
-	let dateElement = document.querySelector(
-		"#date"
-	);
+	descriptionElement.innerHTML = response.data.weather[0].description;
 
-	celciusTemperature =
-		response
-			.data
-			.main
-			.temp;
+	humidityElement.innerHTML =response.data.main.humidity;
 
-	cityeElement.innerHTML =
-		response.data.name;
+	windElement.innerHTML = Math.round(response.data.wind.speed);
 
-	temperatureElement.innerHTML = Math.round(
-		response
-			.data
-			.main
-			.temp
-	);
-
-	descriptionElement.innerHTML =
-		response.data.weather[0].description;
-
-	humidityElement.innerHTML =
-		response.data.main.humidity;
-
-	windElement.innerHTML = Math.round(
-		response
-			.data
-			.wind
-			.speed
-	);
-
-	dateElement.innerHTML = formatDate(
-		response
-			.data
-			.dt *
-			1000
-	);
+	dateElement.innerHTML = formatDate(response.data.dt * 1000);
 }
 
 // forecast by time
@@ -117,18 +62,10 @@ function showForecast(
 	forecastElement.innerHTML = null;
 	let forecast = null;
 
-	for (
-		let index = 0;
-		index <
-		6;
-		index++
-	) {
-		forecast =
-			response
-				.data
-				.list[
-				index
-			];
+	for
+		(let index = 0; index < 6; index++) {
+		forecast = response.data.list[index];
+
 		forecastElement.innerHTML += `
                         <div class="col">
                             <span> ${formatHours(
@@ -162,6 +99,7 @@ function showForecast(
                     `;
 	}
 }
+
 // get 3 hour time forecast
 
 function formatHours(
@@ -322,55 +260,54 @@ function getIcon(
 	let iconElement =
 		"";
 
-	if (
+	if (icon ===
+		"01d" ||
 		icon ===
-			"01d" ||
-		icon ===
-			"01n"
+		"01n"
 	) {
 		iconElement = sunny_icon;
 	} else if (
 		icon ===
-			"02d" ||
+		"02d" ||
 		icon ===
-			"02n"
+		"02n"
 	) {
 		iconElement = Suncloud_icon;
 	} else if (
 		icon ===
-			"03d" ||
+		"03d" ||
 		icon ===
-			"03n" ||
+		"03n" ||
 		icon ===
-			"04d" ||
+		"04d" ||
 		icon ===
-			"04n" ||
+		"04n" ||
 		icon ===
-			"50d" ||
+		"50d" ||
 		icon ===
-			"50n"
+		"50n"
 	) {
 		iconElement = windycloud_icon;
 	} else if (
 		icon ===
-			"09d" ||
+		"09d" ||
 		icon ===
-			"09n" ||
+		"09n" ||
 		icon ===
-			"10d" ||
+		"10d" ||
 		icon ===
-			"10n" ||
+		"10n" ||
 		icon ===
-			"11d" ||
+		"11d" ||
 		icon ===
-			"11n"
+		"11n"
 	) {
 		iconElement = raincloud_icon;
 	} else if (
 		icon ===
-			"13d" ||
+		"13d" ||
 		icon ===
-			"13n"
+		"13n"
 	) {
 		iconElement = snowcloud_icon;
 	}
@@ -379,14 +316,10 @@ function getIcon(
 
 //search engine
 
-function search(
-	city
-) {
-	let unit =
-		"metric";
-	let apiKey =
-		"f7d4da118c7f49c6b1df6502b95c501b";
-	let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+function search(city) {
+	let unit = "metric";
+	let apiKey = "f7d4da118c7f49c6b1df6502b95c501b";
+	let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${unit}`;
 
 	axios
 		.get(
@@ -436,7 +369,7 @@ function showFahrenheitTemperature(
 	let FahrenheitTemperature =
 		(celciusTemperature *
 			9) /
-			5 +
+		5 +
 		32;
 
 	temperatureElement.innerHTML = Math.round(
@@ -463,6 +396,14 @@ function showcelciusTemperature(
 }
 
 // clicks and sumbit
+
+let currentLocation = document.querySelector(
+	"#current-location"
+);
+currentLocation.addEventListener(
+	"click",
+	handleClick
+);
 
 let celciusTemperature = null;
 
@@ -500,20 +441,15 @@ search(
 function currentPosition(
 	position
 ) {
-	let lat =
-		position
-			.coords
-			.latitude;
-	let long =
-		position
-			.coords
-			.longitude;
-	let unit =
-		"metric";
-	let apiKey =
-		"f7d4da118c7f49c6b1df6502b95c501b";
+
+	let lat = position.coords.latitude;
+	let long = position.coords.longitude;
+	let unit = "metric";
+	let apiKey = "f7d4da118c7f49c6b1df6502b95c501b";
 
 	let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}&units=${unit}`;
+
+	let city = null
 
 	axios
 		.get(
@@ -521,7 +457,17 @@ function currentPosition(
 		)
 		.then(
 			showTemperature
+	);
+
+	apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${long}&appid=${apiKey}&units=${unit}`;
+	axios
+		.get(
+			apiUrl
+		)
+		.then(
+			showForecast
 		);
+	
 }
 
 function handleClick() {
@@ -530,10 +476,3 @@ function handleClick() {
 	);
 }
 
-let currentLocation = document.querySelector(
-	"#current-location"
-);
-currentLocation.addEventListener(
-	"click",
-	handleClick
-);
